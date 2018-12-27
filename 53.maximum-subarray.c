@@ -28,16 +28,23 @@
  * the divide and conquer approach, which is more subtle.
  * 
  */
-int maxSubArray(int *nums, int numsSize)
-{
-    int sum = 0;
-    int max = 0, maxneg = 1 < 31;
-    int front = -1, rear = -1;
+int maxSubArray(int* nums, int numsSize) {
+        int maxnum = 1 << 31, sum = 0, maxsum = 1 << 31;
+    int hasone = 0;
     for (int i = 0; i < numsSize; i++)
     {
-        sum = (sum + nums[i]) > 0 ? (sum + nums[i]) : 0;
-        maxneg = nums[i] < 0 ? maxneg < nums[i] ? nums[i] : maxneg : maxneg;
-        max = max < sum ? sum : max;
+        maxnum = maxnum < nums[i] ? nums[i] : maxnum;
+        if (sum + nums[i] < 0)
+        {
+            sum = 0;
+        }
+        else
+        {
+            sum += nums[i];
+            maxsum = maxsum < sum ? sum : maxsum;
+            hasone = 1;
+        }
     }
-    return max;
+    maxsum = hasone == 1 ? maxsum : maxnum;
+    return maxsum;
 }
