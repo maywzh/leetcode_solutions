@@ -46,7 +46,7 @@
         "-std=c11",
         "-g",
         "-o",
-        "main"
+        "test"
       ],
       "presentation": {
         "echo": true,
