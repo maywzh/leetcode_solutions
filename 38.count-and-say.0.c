@@ -50,12 +50,14 @@
  */
 char *countAndSay(int n)
 {
-    char *result = (char *)malloc(sizeof(char) * 2000);
-    char *tmp = (char *)malloc(sizeof(char) * 2000);
+    char *result = (char *)malloc(sizeof(char) * 10000);
+    char *tmp = (char *)malloc(sizeof(char) * 10000);
     char *p;
 
     char c = ' ';
     int i, j, k, w;
+    result[0] = '1';
+    result[1] = '\0';
     for (i = 2; i <= n; i++)
     {
         j = k = 1;
@@ -67,18 +69,23 @@ char *countAndSay(int n)
                 k++;
             else
             {
-                tmp[w++] = k - '0';
+                tmp[w++] = k + '0';
                 tmp[w++] = c;
                 c = result[j];
                 k = 1;
             }
+            j++;
         }
-        p = tmp;
-        while (*p != '\0')
+        tmp[w++] = k + '0';
+        tmp[w++] = c;
+        tmp[w] = '\0';
+        j = 0;
+        while (tmp[j] != '\0')
         {
-            *result = *p;
-            *p = '\0';
+            result[j] = tmp[j];
+            j++;
         }
+        result[j] = '\0';
     }
     return result;
 }
