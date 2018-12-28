@@ -59,6 +59,25 @@
  * 
  * 
  */
-int repeatedNTimes(int* A, int ASize) {
-    
+int repeatedNTimes(int *A, int ASize)
+{
+    int main_num = A[0];
+    int times = 1;
+    for (int i = 1; i < ASize; i++)
+    {
+        if (A[i] == main_num)
+        {
+            times++;
+        }
+        else
+        {
+            times--;
+            if (times <= 0)
+            {
+                main_num = A[i];
+                times = 1;
+            }
+        }
+    }
+    return main_num;
 }
