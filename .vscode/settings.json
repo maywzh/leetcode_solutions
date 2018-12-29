@@ -13,5 +13,6 @@
     "system_error": "cpp",
     "type_traits": "cpp",
     "utility": "cpp"
-  }
+  },
+  "python.pythonPath": "/home/maywzh/.pyenv/versions/3.7.1/bin/python"
 }
