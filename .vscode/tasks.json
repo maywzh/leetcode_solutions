@@ -4,40 +4,6 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "make-all",
-      "command": "make",
-      "type": "process",
-      "args": ["-i"],
-      "problemMatcher": "$gcc",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "clear": false,
-        "showReuseMessage": true
-      },
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    },
-    {
-      "label": "make clean-all",
-      "command": "make",
-      "type": "process",
-      "args": ["-i", "clean"],
-      "problemMatcher": "$gcc",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "clear": false,
-        "showReuseMessage": true
-      }
-    },
-    {
       "label": "compile",
       "command": "gcc",
       "type": "shell",
