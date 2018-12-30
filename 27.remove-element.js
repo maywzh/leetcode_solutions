@@ -69,6 +69,16 @@
  * @param {number} val
  * @return {number}
  */
-var removeElement = function(nums, val) {
-    
+var removeElement = function (nums, val) {
+  let j = 0;
+  let len = nums.length;
+  for (i = 0; i < len; i++) {
+    if (nums[i] != val) {
+      nums[j] = nums[i];
+      j++;
+    }
+  }
+  for (i = j; i < len; i++) {
+    nums.pop(j);
+  }
 };
