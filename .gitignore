@@ -4,7 +4,9 @@ main
 test
 test.py
 test.go
-
+test.js
+test.cxx
+test.java
 
 # ---> macOS
 # General
