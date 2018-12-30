@@ -48,6 +48,44 @@
  * Output: "1211"
  * 
  */
-char* countAndSay(int n) {
-    
+char *countAndSay(int n)
+{
+    char *result = (char *)malloc(sizeof(char) * 10000);
+    char *tmp = (char *)malloc(sizeof(char) * 10000);
+    char *p;
+
+    char c = ' ';
+    int i, j, k, w;
+    result[0] = '1';
+    result[1] = '\0';
+    for (i = 2; i <= n; i++)
+    {
+        j = k = 1;
+        w = 0;
+        c = result[0];
+        while (result[j] != '\0')
+        {
+            if (result[j] == c)
+                k++;
+            else
+            {
+                tmp[w++] = k + '0';
+                tmp[w++] = c;
+                c = result[j];
+                k = 1;
+            }
+            j++;
+        }
+        tmp[w++] = k + '0';
+        tmp[w++] = c;
+        tmp[w] = '\0';
+        j = 0;
+        while (tmp[j] != '\0')
+        {
+            result[j] = tmp[j];
+            j++;
+        }
+        result[j] = '\0';
+    }
+    return result;
 }

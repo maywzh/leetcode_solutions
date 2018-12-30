@@ -6,8 +6,8 @@
  * https://leetcode.com/problems/longest-common-prefix/description/
  *
  * algorithms
- * Easy (32.50%)
- * Total Accepted:    371.4K
+ * Easy (32.53%)
+ * Total Accepted:    373.6K
  * Total Submissions: 1.1M
  * Testcase Example:  '["flower","flow","flight"]'
  *
@@ -29,7 +29,7 @@
  * Input: ["dog","racecar","car"]
  * Output: ""
  * Explanation: There is no common prefix among the input strings.
- * `
+ * 
  * 
  * Note:
  * 
@@ -38,25 +38,31 @@
  */
 char *longestCommonPrefix(char **strs, int strsSize)
 {
-    int j = 0;
-    char flag[256];
-    for (int i = 0; i < strsSize; i++)
+    char *result = (char *)malloc(1000 * sizeof(char));
+    char flag = '\0';
+    for (int j = 0; 1 == 1; j++)
     {
-        if (strs[i][j] == '\0')
-            break;
-        if (i == 0)
-            continue;
-        if (strs[i][j] != strs[0][j])
-            break;
-        if (i == strsSize - 1)
+        if (strs[0][j] != '\0')
+            flag = strs[0][j];
+        else
         {
-            flag[j++] = strs[i][j];
+            result[j] = '\0';
+            break;
         }
-    }
-    char *result = (char *)malloc(sizeof(char) * j);
-    for (int i = 0; i < j; i++)
-    {
-        result[i] = flag[j];
+        for (int i = 1; i < strsSize; i++)
+        {
+            if (strs[i][j] == '\0')
+            {
+                result[j] = '\0';
+                return result;
+            }
+            if (strs[i][j] != flag)
+            {
+                result[j] = '\0';
+                return result;
+            }
+        }
+        result[j] = flag;
     }
     return result;
 }
