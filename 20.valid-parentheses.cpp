@@ -59,9 +59,44 @@
  * 
  * 
  */
-class Solution {
-public:
-    bool isValid(string s) {
-        
+class Solution
+{
+  public:
+    bool isValid(string s)
+    {
+        char* stack = new char[4000];
+        bool valid = false;
+        int top = -1;
+        int i = 0;
+        while (s[i] != '\0')
+        {
+            if (s[i] == '(' || s[i] == '[' || s[i] == '{')
+            {
+                stack[++top] = s[i];
+            }
+            else if (s[i] == ')')
+            {
+                if (stack[top] == '(')
+                    top--;
+                else
+                    return false;
+            }
+            else if (s[i] == ']')
+            {
+                if (stack[top] == '[')
+                    top--;
+                else
+                    return false;
+            }
+            else if (s[i] == '}')
+            {
+                if (stack[top] == '{')
+                    top--;
+                else
+                    return false;
+            }
+            i++;
+        }
+        return top < 0;
     }
 };
