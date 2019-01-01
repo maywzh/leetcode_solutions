@@ -43,11 +43,36 @@ int strStr(char *haystack, char *needle)
 {
     if (needle[0] == '\0')
         return 0;
-    int i = 1, j = 0;
-    int *next = (int *)malloc(sizeof(int) * 100);
+    int i = 0, j = -1;
+    int *next = (int *)malloc(sizeof(int) * 100000);
     next[0] = -1;
+    next[1] = 0;
+    int plen = 0;
     while (needle[i] != '\0')
+        if (j == -1 || needle[i] == needle[j]) //j==-1 对应特殊情况 前后无匹配子串
+        {
+            ++i, ++j;
+            if (needle[i] != needle[j])
+                next[i] = j;
+            else
+                next[i] = next[j];
+        }
+        else
+            j = next[j];
+    plen = i;
+    i = j = 0;
+    while (haystack[i] != '\0' && j < plen)
     {
-        if ()
+        if (j == -1 || haystack[i] == needle[j])
+        {
+            ++i;
+            ++j;
+        }
+        else
+            j = next[j];
     }
+    if (j >= plen)
+        return i - plen;
+    else
+        return -1;
 }
