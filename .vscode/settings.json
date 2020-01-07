@@ -14,5 +14,5 @@
     "type_traits": "cpp",
     "utility": "cpp"
   },
-  "python.pythonPath": "/Users/meiwangzhihui/.pyenv/versions/3.7.4/bin/python"
+  "python.pythonPath": "/home/maywzh/.pyenv/versions/3.7.4/bin/python"
 }
