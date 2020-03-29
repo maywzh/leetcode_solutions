@@ -1,6 +1,7 @@
 {
 	"folders": [
 		{
+<<<<<<< HEAD
 			"name": "leetcode",
 			"path": "."
 		},
@@ -25,4 +26,10 @@
 			"utility": "cpp"
 		}
 	}
+=======
+			"name": ".leetcode",
+			"path": "."
+		}
+	]
+>>>>>>> 67a27a6a56c010cb7998b7cb38902be18e37651d
 }
