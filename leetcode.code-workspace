@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"name": "leetcode",
+			"path": "."
+		},
+		{
+			"path": "/Users/maywzh/Workspace/data-stracture"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.cxx": "cpp",
+			"*.tcc": "cpp",
+			"cwchar": "cpp",
+			"vector": "cpp",
+			"istream": "cpp",
+			"limits": "cpp",
+			"new": "cpp",
+			"ostream": "cpp",
+			"stdexcept": "cpp",
+			"string_view": "cpp",
+			"system_error": "cpp",
+			"type_traits": "cpp",
+			"utility": "cpp"
+		}
+	}
+}
