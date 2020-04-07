@@ -1,8 +1,11 @@
 {
 	"folders": [
 		{
-			"name": ".leetcode",
+			"name": "leetcode",
 			"path": "."
+		},
+		{
+			"path": "/Users/maywzh/Workspace/data-stracture"
 		}
-	]
+	],
 }

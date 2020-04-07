@@ -2,7 +2,10 @@
   "configurations": [
     {
       "name": "Mac",
+<<<<<<< HEAD
       "defines": [],
+=======
+>>>>>>> d6fb44771982c1dfc5dd950dd2eb337e4f15426e
       "compilerPath": "/usr/bin/clang",
       "cStandard": "c11",
       "cppStandard": "c++17",
@@ -10,6 +13,7 @@
     },
     {
       "name": "Linux",
+<<<<<<< HEAD
 
       "defines": ["_GNU_SOURCE"],
       "compilerPath": "/usr/bin/clang",
@@ -18,6 +22,25 @@
     {
       "name": "Win32",
       "defines": ["_DEBUG", "UNICODE", "_UNICODE"],
+=======
+      "defines": [
+        "_GNU_SOURCE"
+      ],
+      "compilerPath": "/usr/bin/clang",
+      "intelliSenseMode": "clang-x64",
+      "browse": {
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": ""
+      }
+    },
+    {
+      "name": "Win32",
+      "defines": [
+        "_DEBUG",
+        "UNICODE",
+        "_UNICODE"
+      ],
+>>>>>>> d6fb44771982c1dfc5dd950dd2eb337e4f15426e
       "intelliSenseMode": "gcc-x64",
       "browse": {
         "limitSymbolsToIncludedHeaders": true,

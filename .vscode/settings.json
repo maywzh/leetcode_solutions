@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "files.associations": {
     "*.cxx": "cpp",
@@ -16,3 +17,5 @@
   },
   "python.pythonPath": "/home/maywzh/.pyenv/versions/3.7.4/bin/python"
 }
+=======
+>>>>>>> d6fb44771982c1dfc5dd950dd2eb337e4f15426e
