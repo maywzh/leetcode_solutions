@@ -40,47 +40,59 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution {
+class Solution
+{
 public:
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        ListNode* head, *rear;
-        ListNode* p = l1;
-        ListNode* q = l2;
-        if (p==NULL) return q;
-        if (q==NULL) return p;
-        if (p->val<q->val) {
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
+    {
+        ListNode *head, *rear;
+        ListNode *p = l1;
+        ListNode *q = l2;
+        if (p == NULL)
+            return q;
+        if (q == NULL)
+            return p;
+        if (p->val < q->val)
+        {
             head = p;
-            rear=head;
-            p=p->next;
-        } 
-        else {
+            rear = head;
+            p = p->next;
+        }
+        else
+        {
             head = q;
-            rear=head;
-            q=q->next;
+            rear = head;
+            q = q->next;
         }
 
-        while(p!=NULL && q!=NULL)
+        while (p != NULL && q != NULL)
         {
-            if (p->val < q->val){
-                rear -> next = p;
-                while(p!=NULL && p->val< q->val){
+            if (p->val < q->val)
+            {
+                rear->next = p;
+                while (p != NULL && p->val < q->val)
+                {
                     rear = p;
-                    p=p->next;
+                    p = p->next;
                 }
                 //rear -> next = q;
-            } else {
-                rear -> next = q;
-                while(q!=NULL && p->val>= q->val){
+            }
+            else
+            {
+                rear->next = q;
+                while (q != NULL && p->val >= q->val)
+                {
                     rear = q;
-                    q=q->next;
+                    q = q->next;
                 }
                 //rear -> next =p;
             }
         }
-        if (p==NULL) rear->next=q;
-        if (q==NULL) rear->next=p;
+        if (p == NULL)
+            rear->next = q;
+        if (q == NULL)
+            rear->next = p;
         return head;
-        
     }
 };
 // @lc code=end
