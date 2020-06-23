@@ -324,3 +324,4 @@ dmypy.json
 node_modules
 .vscode/settings.json
 .vscode
+leetcode.code-workspace
