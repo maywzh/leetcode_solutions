@@ -11,14 +11,14 @@ class Solution:
         lennum = len(nums)
         ans = [-1 for i in range(lennum)]
         s = []
-        for i in range(2*lennum-1,-1,-1):
-            while s and s[-1] <= nums[i%lennum]:
+        for i in range(2 * lennum - 1, -1, -1):
+            while s and s[-1] <= nums[i % lennum]:
                 s.pop()
             if not s:
-                ans[i%lennum] = -1
+                ans[i % lennum] = -1
             else:
-                ans[i%lennum] = s[-1]
-            s.append(nums[i%lennum])
+                ans[i % lennum] = s[-1]
+            s.append(nums[i % lennum])
         return ans
 
 
