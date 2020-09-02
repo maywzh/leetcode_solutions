@@ -14,22 +14,17 @@
  * }
  */
 func isValidBST(root *TreeNode) bool {
-	rep := make([]int, 0)
-	var rebuild func(*TreeNode)
-	rebuild = func(node *TreeNode) {
-		if node != nil {
-			rebuild(node.Left)
-			rep = append(rep, node.Val)
-			rebuild(node.Right)
+	var chk func(*TreeNode, int, int) bool
+	chk = func(node *TreeNode, morethan, lessthan int) bool {
+		if node == nil {
+			return true
 		}
-	}
-	rebuild(root)
-	for i := 0; i < len(rep)-1; i++ {
-		if rep[i] >= rep[i+1] {
+		if node.Val >= lessthan || node.Val <= morethan {
 			return false
 		}
+		return chk(node.Left, morethan, node.Val) && chk(node.Right, node.Val, lessthan)
 	}
-	return true
+	return chk(root, math.MinInt64, math.MaxInt64)
 }
 
 // @lc code=end
