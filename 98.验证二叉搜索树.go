@@ -27,5 +27,24 @@ func isValidBST(root *TreeNode) bool {
 	return chk(root, math.MinInt64, math.MaxInt64)
 }
 
+// func isValidBST(root *TreeNode) bool {
+//     var anchor int = math.MinInt64
+//     var inorder func(*TreeNode) bool
+//     inorder = func(node *TreeNode) bool {
+//         if node == nil {
+//             return true
+//         }
+//         if !inorder(node.Left) {
+//             return false
+//         }
+//         if node.Val <= anchor {
+//             return false
+//         }
+//         anchor = node.Val
+//         return inorder(node.Right)
+//     }
+//     return inorder(root)
+// }
+
 // @lc code=end
 
