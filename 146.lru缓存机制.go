@@ -16,53 +16,70 @@ type Node struct {
 }
 
 func Constructor(capacity int) LRUCache {
-	cache := LRUCache{
-		hash:     make(map[int]*Node),
-		head:     &Node{0, 0, nil, nil},
-		tail:     &Node{0, 0, nil, nil},
+	head, tail := &Node{0, 0, nil, nil}, &Node{0, 0, nil, nil}
+	head.next = tail
+	tail.prev = head
+	return LRUCache{
 		capacity: capacity,
+		hash:     make(map[int]*Node),
+		head:     head,
+		tail:     tail,
 	}
-	cache.head.next = cache.tail
-	cache.tail.prev = cache.head
-	return cache
 }
 
 func (this *LRUCache) AddNode(node *Node) {
-	
+	head := this.head
+	node.prev = head
+	node.next = head.next
+	head.next.prev = node
+	head.next = node
+	this.hash[node.key] = node
+}
+
+//删除节点 排除首节点和尾节点
+func (this *LRUCache) Remove(node *Node) {
+	if node != nil && node.prev != nil && node.next != nil {
+		node.prev.next = node.next
+		node.next.prev = node.prev
+		node.prev, node.next = nil, nil
+		delete(this.hash, node.key)
+	}
+}
+
+func (this *LRUCache) RemoveOvercachedNode() {
+	for this.capacity < len(this.hash) && len(this.hash) > 0 {
+		this.Remove(this.tail.prev)
+	}
+}
+
+func (this *LRUCache) MoveToFront(node *Node) {
+	head := this.head
+	node.prev.next = node.next
+	node.next.prev = node.prev
+	node.prev = head
+	node.next = head.next
+	head.next.prev = node
+	head.next = node
 
 }
 
 func (this *LRUCache) Get(key int) int {
-	if elem, ok := hash[key]; ok {
-		if head.next != elem {
-			elem.prev.next = elem.next
-			elem.next.prev = elem.prev
-			elem.prev = head
-			elem.next = head.next
-			head.next = elem
-		}
-		ret := m[key].value
-		return ret
+	if node, ok := this.hash[key]; ok {
+		this.MoveToFront(node)
+		return node.value
 	} else {
 		return -1
 	}
 }
 
-func (this *LRUCache) RemoveOldestNode() {
-	for this.capacity < len(hash) {
-		oldest := tail.prev
-		delete(hash, oldest.key)
-		tail.prev = oldest.prev
-		oldest.prev.next = tail
-	}
-}
-
 func (this *LRUCache) Put(key int, value int) {
-	if elem, ok := hash[key]; ok {
-		elem.value = value
+	if node, ok := this.hash[key]; ok {
+		node.value = value
+		this.MoveToFront(node)
 	} else {
-		elem = &Node{key, value, nil, nil}
-
+		node = &Node{key, value, nil, nil}
+		this.AddNode(node)
+		this.RemoveOvercachedNode()
 	}
 }
 
