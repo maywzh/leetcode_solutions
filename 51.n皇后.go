@@ -6,8 +6,9 @@
 
 // @lc code=start
 func solveNQueens(n int) [][]string {
-	queens, xysum, xydiff := make([]int, 0), make([]int, 0), make([]int, 0)
-	ansn := make([][]int, 0)
+	type void struct{}
+	var null void
+	ans := make([][]string, 0)
 	inArr := func(a int, list []int) bool {
 		for _, b := range list {
 			if b == a {
@@ -16,39 +17,45 @@ func solveNQueens(n int) [][]string {
 		}
 		return false
 	}
-	var backtracing func([]int, []int, []int)
-	backtracing = func(queens, xysum, xydiff []int) {
+	transform := func(queens []int) []string {
+		rows := make([]string, 0)
+		for i := 0; i < n; i++ {
+			row := ""
+			for j := 0; j < n; j++ {
+				if queens[i] == j {
+					row += "Q"
+				} else {
+					row += "."
+				}
+			}
+			rows = append(rows, row)
+		}
+		return rows
+	}
+
+	var backtracing func([]int, map[int]void, map[int]void)
+	backtracing = func(queens []int, xy_sum, xy_dif map[int]void) {
 		l := len(queens)
 		if l >= n {
-			ansn = append(ansn, queens)
+			ans = append(ans, transform(queens))
 			return
 		}
 		for i := 0; i < n; i++ {
-			if ok1, ok2, ok3 := inArr(i, queens), inArr(l+i, xysum), inArr(l-i, xydiff); !ok1 && !ok2 && !ok3 {
-				backtracing(append(queens, i), append(xysum, l+i), append(xydiff, l-i))
+			ok1 := inArr(i, queens)
+			_, ok2 := xy_sum[l+i]
+			_, ok3 := xy_dif[l-i]
+			if !ok1 && !ok2 && !ok3 {
+				xy_sum[l+i] = null
+				xy_dif[l-i] = null
+				backtracing(append(queens, i), xy_sum, xy_dif)
+				delete(xy_sum, l+i)
+				delete(xy_dif, l-i)
 			}
 		}
 	}
-	backtracing(queens, xysum, xydiff)
-	return func(ansn [][]int) [][]string {
-		rets := make([][]string, 0)
-		for i := 0; i < len(ansn); i++ {
-			ret := make([]string, 0)
-			for j := 0; j < n; j++ {
-				retv := ""
-				for k := 0; k < n; k++ {
-					if k == ansn[i][j] {
-						retv = retv + "Q"
-					} else {
-						retv = retv + "."
-					}
-				}
-				ret = append(ret, retv)
-			}
-			rets = append(rets, ret)
-		}
-		return rets
-	}(ansn)
+
+	backtracing(make([]int, 0), make(map[int]void), make(map[int]void))
+	return ans
 }
 
 // @lc code=end
