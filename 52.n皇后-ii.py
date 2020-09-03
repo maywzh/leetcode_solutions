@@ -9,7 +9,7 @@
 class Solution:
     def totalNQueens(self, n: int) -> int:
         ans = 0
-        solu = [0 for i in range(n)]
+        solu = [0] * n
 
         def valid_solu(t) -> bool:
             for i in range(t):

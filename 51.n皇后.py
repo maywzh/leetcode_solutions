@@ -9,7 +9,7 @@
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
         ans = []
-        solution = [0 for i in range(n)]
+        solution = [0] * n
 
         def valid_solution(t) -> bool:
             for i in range(t):
