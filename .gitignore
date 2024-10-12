@@ -325,3 +325,5 @@ node_modules
 .vscode/settings.json
 .vscode
 **/leetcode.code-workspace
+
+.lcpr_data
