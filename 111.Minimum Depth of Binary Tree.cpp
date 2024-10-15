@@ -38,9 +38,9 @@ using namespace std;
 class Solution {
 public:
     int minDepth(TreeNode *root) {
-        queue<TreeNode *> q;
-        if (!root)
+        if (root == nullptr)
             return 0;
+        queue<TreeNode *> q;
         q.push(root);
         int depth = 1;
         while (!q.empty()) {
