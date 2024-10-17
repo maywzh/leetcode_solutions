@@ -5,7 +5,6 @@
  * [1261] 在受污染的二叉树中查找元素
  */
 
-
 // @lcpr-template-start
 using namespace std;
 #include <algorithm>
@@ -38,12 +37,24 @@ using namespace std;
  */
 class FindElements {
 public:
-    FindElements(TreeNode* root) {
+    FindElements(TreeNode *root) { traverse(root, 0); }
 
-    }
-    
-    bool find(int target) {
+    bool find(int target) { return vals.count(target) > 0; }
 
+private:
+    unordered_set<int> vals;
+
+    void traverse(TreeNode *node, int val) {
+        if (node == nullptr)
+            return;
+
+        // 直接设置节点值，并将其加入集合
+        node->val = val;
+        vals.insert(node->val);
+
+        // 遍历左子树和右子树，按规则赋值
+        traverse(node->left, val * 2 + 1);
+        traverse(node->right, val * 2 + 2);
     }
 };
 
@@ -53,8 +64,6 @@ public:
  * bool param_1 = obj->find(target);
  */
 // @lc code=end
-
-
 
 /*
 // @lcpr case=start
@@ -70,4 +79,3 @@ public:
 // @lcpr case=end
 
  */
-
