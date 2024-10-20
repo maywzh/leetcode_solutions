@@ -49,7 +49,7 @@ private:
         for (auto next : graph[cur]) {
             traverse(next, graph);
         }
-        postorder.push_back(s);
+        postOrder.push_back(cur);
         visited[cur] = 2;
     }
 
@@ -65,11 +65,11 @@ private:
     }
 
 public:
-    findOrder(int numCourses, vector<vector<int>> &prerequisites) {
+    vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites) {
         auto graph = buildGraph(numCourses, prerequisites);
         visited = vector<int>(numCourses);
         for (int i = 0; i < numCourses; i++) {
-            traverse(graph, i);
+            traverse(i, graph);
             if (hasCycle)
                 return vector<int>();
         }
