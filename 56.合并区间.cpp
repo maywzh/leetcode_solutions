@@ -5,7 +5,6 @@
  * [56] 合并区间
  */
 
-
 // @lcpr-template-start
 using namespace std;
 #include <algorithm>
@@ -27,13 +26,28 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        
+    vector<vector<int>> merge(vector<vector<int>> &intervals) {
+        sort(intervals.begin(), intervals.end(),
+             [](const vector<int> &a, const vector<int> &b) { return a[0] < b[0]; });
+        vector<vector<int>> ans;
+        int start = intervals[0][0];
+        int end = intervals[0][1];
+        int i = 1;
+        while (i < intervals.size()) {
+            if (end < intervals[i][0]) {
+                ans.push_back({start, end});
+                start = intervals[i][0];
+                end = intervals[i][1];
+            } else {
+                end = max(end, intervals[i][1]);
+            }
+            i++;
+        }
+        ans.push_back({start, end});
+        return ans;
     }
 };
 // @lc code=end
-
-
 
 /*
 // @lcpr case=start
@@ -45,4 +59,3 @@ public:
 // @lcpr case=end
 
  */
-
